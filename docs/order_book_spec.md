@@ -46,7 +46,8 @@ Events arrive in order and are processed one at a time.
 Prices and sides cannot change on an existing order.
 An order ID may be reused after its previous order has been removed.
 Crossed books are allowed; this module does not perform matching.
-Hardware widths and capacity limits will be defined later.
+Initial hardware widths and capacity limits are defined in [hardware_spec.md](hardware_spec.md).
+The Python reference model remains unbounded.
 
 ## Worked example
 Prices below are ticks, not currency amounts.
