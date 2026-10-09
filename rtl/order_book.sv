@@ -3,6 +3,8 @@
 // Rejected event:   IDLE -> LOOKUP -> APPLY -> COMPLETE (no book changes).
 // CANCEL and EXECUTE both remove quantity; EXECUTE records a reported fill.
 // This module does not choose trades or match BUY orders against SELL orders.
+`timescale 1ns/1ps
+
 module order_book (
     input  logic        clk,
     input  logic        rst,
