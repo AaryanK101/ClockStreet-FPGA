@@ -97,7 +97,29 @@ module order_book_basic_tb;
         if (event_ready !== 1'b1)
             $fatal(1, "Expected ready to be accepted after reset");
 
-        $display("Reset test passed");
+        $display("Reset tests passed");
+
+        // Add on BUY order check
+        @(negedge clk);      // Setting states/values at falling edge of clk
+        event_type = 2'b00;  // Add
+        order_id = 16'd1;
+        side = 1'b0;         // Buy
+        price = 32'd100;
+        quantity = 32'd10;
+        event_valid = 1'b1;
+
+        @(negedge clk); // wait one clock cycle to the next falling edge
+        event_valid = 0;
+
+        // pause testbench until DUT says processing finished
+        wait (result_valid == 1'b1);
+        #1; // wait one ns before reading outputs
+        if (best_bid_price !== 32'd100)
+            $fatal(1, "Add check failed");
+
+        $display("ADD test passed");
+
+
         $finish;
     end
 
