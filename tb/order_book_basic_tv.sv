@@ -117,6 +117,22 @@ module order_book_basic_tb;
         if (best_bid_price !== 32'd100)
             $fatal(1, "Add check failed");
 
+        // Checking bid quantity
+        if (best_bid_quantity !== 32'd10)
+            $fatal(1, "Quantity check failed");
+
+        // checking if bid is valid
+        if (best_bid_valid !== 1'b1)
+            $fatal(1, "Bid should be valid");
+
+        // Check if ask is invalid after add
+        if (best_ask_valid !== 1'b0)
+            $fatal(1, "Best ask should be invalid after add");
+
+        // Check for error code
+        if (error_code !== 3'd0)
+            $fatal(1, "Error code should be 0");
+
         $display("ADD test passed");
 
 
